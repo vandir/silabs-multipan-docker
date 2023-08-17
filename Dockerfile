@@ -1,4 +1,19 @@
-FROM homeassistant/aarch64-addon-silabs-multiprotocol:latest
+FROM homeassistant/${TARGETARCH}-addon-silabs-multiprotocol:latest
+
+ENV DEVICE="/dev/ttyUSB0" \
+    BAUDRATE="460800" \
+    CPCD_TRACE="true" \
+    FLOW_CONTROL="true" \
+    NETWORK_DEVICES=0 \
+    OTBR_ENABLE=1 \
+    BACKBONE_IF="eth0" \
+    OTBR_LOG_LEVEL="debug" \
+    OTB_FIREWALL=1 \
+    OTBR_REST_LISTEN_PORT="8081" \
+    OTBR_WEB_PORT="8086" \
+    NETWORK_DEVICE="" \
+    EZSP_LISTEN_PORT="20108"\
+    AUTOFLASH_FIRMWARE=0
 
 RUN rm -rf /etc/s6-overlay/s6-rc.d/banner && \
     rm -rf /etc/s6-overlay/scripts/banner.sh && \
@@ -16,6 +31,6 @@ RUN rm -rf /etc/s6-overlay/s6-rc.d/banner && \
 
 COPY rootfs /
 
-# use s6-overlay as init system
 WORKDIR /
+
 ENTRYPOINT ["/init"]
