@@ -2,26 +2,29 @@ version: "3.9"
 services:
   multipan:
     container_name: multipan
-    image: ghcr.io/b2un0/silabs-multipan-docker:main
+    image: ghcr.io/b2un0/silabs-multipan-docker:latest
     cap_add:
       - SYS_ADMIN
       - NET_ADMIN
     restart: unless-stopped
     privileged: true
     network_mode: host
+    volumes:
+      - ~/multipan/:/data
     environment:
       # OCPD environment variables
       DEVICE: "/dev/ttyUSB0"
       BAUDRATE: "460800"
-      CPCD_TRACE: "true"
+      CPCD_TRACE: "false"
       FLOW_CONTROL: "true"
-      NETWORK_DEVICES: 0 #"false"
+
+      NETWORK_DEVICES: 0
 
       # OTBR-AGENT environment variables
-      OTBR_ENABLE: 1 #true
+      OTBR_ENABLE: 1
       BACKBONE_IF: "eth0"
       OTBR_LOG_LEVEL: "debug"
-      OTB_FIREWALL: 1 #"true"
+      OTB_FIREWALL: 1
       OTBR_REST_LISTEN_PORT: "8081"
 
       # OTBR-WEB environment variables
@@ -34,6 +37,5 @@ services:
       EZSP_LISTEN_PORT: "20108"
 
       # UNIVERSAL FLASHER variables
-      AUTOFLASH_FIRMWARE: 1 #"true"
+      AUTOFLASH_FIRMWARE: 0
       FIRMWARE: "NabuCasa_SkyConnect_RCP_v4.3.1_rcp-uart-hw-802154_460800.gbl"
-

@@ -1,8 +1,9 @@
 FROM homeassistant/${TARGETARCH}-addon-silabs-multiprotocol:latest
 
-ENV DEVICE="/dev/ttyUSB0" \
+ENV S6_VERBOSITY=3 \
+    DEVICE="/dev/ttyUSB0" \
     BAUDRATE="460800" \
-    CPCD_TRACE="true" \
+    CPCD_TRACE="false" \
     FLOW_CONTROL="true" \
     NETWORK_DEVICES=0 \
     OTBR_ENABLE=1 \
@@ -13,7 +14,8 @@ ENV DEVICE="/dev/ttyUSB0" \
     OTBR_WEB_PORT="8086" \
     NETWORK_DEVICE="" \
     EZSP_LISTEN_PORT="20108"\
-    AUTOFLASH_FIRMWARE=0
+    AUTOFLASH_FIRMWARE=0 \
+    FIRMWARE=""
 
 RUN rm -rf /etc/s6-overlay/s6-rc.d/banner && \
     rm -rf /etc/s6-overlay/scripts/banner.sh && \
@@ -32,5 +34,7 @@ RUN rm -rf /etc/s6-overlay/s6-rc.d/banner && \
 COPY rootfs /
 
 WORKDIR /
+
+VOLUME /data
 
 ENTRYPOINT ["/init"]

@@ -7,7 +7,7 @@
           <list>
             <DockerEnvVarImpl>
               <option name="name" value="TARGETARCH" />
-              <option name="value" value="arm64" />
+              <option name="value" value="aarch64" />
             </DockerEnvVarImpl>
           </list>
         </option>
