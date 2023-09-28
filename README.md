@@ -1,6 +1,6 @@
 # Silabs multiprotocol for HA docker installation
 
-This container is a dockerized version of the [Silicon Labs multiprotocol addon for HAOS](https://skyconnect.home-assistant.io/procedures/enable-multiprotocol/).
+This container is a **standalone** version of the [Silicon Labs multiprotocol addon for HAOS](https://skyconnect.home-assistant.io/procedures/enable-multiprotocol/). without the HAOS stuff.
 
 ![](https://img.shields.io/github/license/b2un0/silabs-multipan-docker.svg)
 ![](https://img.shields.io/github/stars/b2un0/silabs-multipan-docker)
@@ -15,6 +15,8 @@ Based on the work by [@nervousapps](https://github.com/nervousapps/haDOCKERaddon
 and [m33ts4k0z](https://github.com/m33ts4k0z/silabs-multipan-docker)
 
 ## getting started
+
+> ⚠️ this container used the hardcoded Port `8081` (this can't be changed!). make sure no other service use this port before starting! ⚠️
 
 ### as docker run
 
@@ -36,11 +38,17 @@ docker run --name multipan \
 
 1. download the [docker-compose.yml](docker-compose.yml) or copy the service to your existing one
 2. change the config in `environment` if necessary
-2. run `docker compose up -d`
+3. run `docker compose up -d`
 
 ## Setup OpenThread Border Router
 
 open in your browser `http://HOST:8086` and configure your OTBR
+
+## Home Assistant
+
+add a new Device Integration "Open Thread Border Router" and use as Host `http://HOST:8081` as Endpoint.
+
+> **NOTE**: you may need also a [python-matter-server](https://github.com/home-assistant-libs/python-matter-server)
 
 ## Setup Zigbee2MQTT
 
