@@ -2,7 +2,7 @@ version: "3.9"
 services:
   multipan:
     container_name: multipan
-    image: ghcr.io/b2un0/silabs-multipan-docker:latest
+    image: b2un0/silabs-multipan-docker:latest
     restart: unless-stopped
     privileged: true # don't change this !
     network_mode: host # don't change this !
@@ -11,7 +11,6 @@ services:
     environment:
       DEVICE: "/dev/ttyUSB0" # only change if your have multiple devices
       BAUDRATE: "460800"
-      CPCD_TRACE: "false"
       FLOW_CONTROL: "true" # change to false if you not using SkyConnect
 
       BACKBONE_IF: "eth0" # change this to your network interface
