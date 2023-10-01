@@ -14,13 +14,19 @@ This container is a **standalone** version of the [Silicon Labs multiprotocol ad
 Based on the work by [@nervousapps](https://github.com/nervousapps/haDOCKERaddons/tree/master/silabs-multiprotocol/dockerCustom)
 and [m33ts4k0z](https://github.com/m33ts4k0z/silabs-multipan-docker)
 
+## requirements
+
+1. working IPv6 in your LAN
+2. the name of your network interface (try `ifconfig` or `ip a`) to set `BACKBONE_IF` correctly
+3. the path of your Device like `/dev/tty???` (`/dev/serial/by-id/` will not work)
+4. Zigbee channel and Thread channel **must** be configured to the same
+5. Port `8081` and `8086` are not in use because the OTBR use is (the first one can't be changed)
+
 ## getting started
 
-> ⚠️ this container used the hardcoded Port `8081` (this can't be changed!). make sure no other service use this port before starting! ⚠️
+⚠️ change `DEVICE` and `BACKBONE_IF` to your environment ⚠️
 
 ### as docker run
-
-change `DEVICE` and `BACKBONE_IF` if necessary
 
 ```bash
 docker run --name multipan \
@@ -48,8 +54,6 @@ open in your browser `http://HOST:8086` and configure your OTBR
 
 add a new Device Integration "Open Thread Border Router" and use as Host `http://HOST:8081` as Endpoint.
 
-> **NOTE**: you may need also a [python-matter-server](https://github.com/home-assistant-libs/python-matter-server)
-
 ## Setup Zigbee2MQTT
 
 To use this with Zigbee2MQTT change the `configuration.yaml` file of Zigbee2MQTT to this configuration:
@@ -62,6 +66,10 @@ serial:
 
 Restart Zigbee2MQTT.
 It might take a couple of tries for Zigbee2MQTT to connect the first time but it will work without issues afterwards.
+
+## Matter
+
+you also need the [python-matter-server](https://github.com/home-assistant-libs/python-matter-server) if you want to use Matter enabled devices with Home Assistant.
 
 ### Firmware Update
 
