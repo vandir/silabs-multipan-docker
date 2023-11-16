@@ -62,6 +62,7 @@ To use this with Zigbee2MQTT change the `configuration.yaml` file of Zigbee2MQTT
 serial:
   port: tcp://host_ip:20108
   adapter: ezsp
+  baudrate: 460800
 ```
 
 Restart Zigbee2MQTT.
