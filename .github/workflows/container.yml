@@ -48,9 +48,11 @@ jobs:
         with:
           context: .
           # create an alias for arm64 (TARGETARCH in build arg) from the existing aarch64 image
+          # create an alias for arm (TARGETARCH in build arg) from the existing armv7 image
           build-contexts: |
             homeassistant/arm64-addon-silabs-multiprotocol:latest=docker-image://docker.io/homeassistant/aarch64-addon-silabs-multiprotocol:latest
-          platforms: linux/amd64,linux/aarch64,linux/armv7
+            homeassistant/arm-addon-silabs-multiprotocol:latest=docker-image://docker.io/homeassistant/armv7-addon-silabs-multiprotocol:latest
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
