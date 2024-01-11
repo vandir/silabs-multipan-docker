@@ -9,18 +9,30 @@ This container is a **standalone** version of the [Silicon Labs multiprotocol ad
 ![](https://img.shields.io/docker/image-size/b2un0/silabs-multipan-docker.svg)
 ![](https://github.com/b2un0/dcled/workflows/container/badge.svg)
 
+# :exclamation: Attention :exclamation:
+
+I do not provide any support for the software running in this container.
+
+I have only provided a `standalone` version of the Silabs multiprotocol container which can run **without** `HAOS`
+
 ## Credits
 
 Based on the work by [@nervousapps](https://github.com/nervousapps/haDOCKERaddons/tree/master/silabs-multiprotocol/dockerCustom)
 and [m33ts4k0z](https://github.com/m33ts4k0z/silabs-multipan-docker)
 
-## requirements
+## :exclamation: requirements :exclamation: read carefully :exclamation:
 
-1. working IPv6 in your LAN
-2. the name of your network interface (try `ifconfig` or `ip a`) to set `BACKBONE_IF` correctly
-3. the path of your Device like `/dev/tty???` (`/dev/serial/by-id/` will not work)
-4. Zigbee channel and Thread channel **must** be configured to the same
-5. Port `8081` and `8086` are not in use because the OTBR use is (the first one can't be changed)
+1. the container must run in `host` network mode
+2. working `IPv6` in your LAN
+3. the container must run with `--privileged` flag
+4. the name of your network interface (try `ifconfig` or `ip a`) to set `BACKBONE_IF` correctly
+5. the path of your Device like `/dev/tty???` (`/dev/serial/by-id/` will not work out of the box)
+6. **Zigbee channel and Thread channel must be configured to the same**
+7. Port `8081` is not in use because the OTBR API use is (can't be changed)
+
+## environment variables
+
+take a look at the [Dockerfile](Dockerfile) file for more information
 
 ## getting started
 
@@ -52,11 +64,21 @@ open in your browser `http://HOST:8086` and configure your OTBR
 
 ## Home Assistant
 
-add a new Device Integration "Open Thread Border Router" and use as Host `http://HOST:8081` as Endpoint.
+### OTBR
+
+add a new Device Integration `Open Thread Border Router` and use as Host `http://HOST:8081` as Endpoint.
+
+### ZHA
+
+1. Add the Zigbee Home Automation (`ZHA`) integration
+2. Choose `EZSP` as Radio type
+3. As serial path, enter `tcp://host_ip:20108`
+4. Port speed `460800`
+5. flow control `hardware`
 
 ## Setup Zigbee2MQTT
 
-To use this with Zigbee2MQTT change the `configuration.yaml` file of Zigbee2MQTT to this configuration:
+To use this with `Zigbee2MQTT` change the `configuration.yaml` file of Zigbee2MQTT to this configuration:
 
 ```yaml
 serial:
@@ -65,8 +87,8 @@ serial:
   baudrate: 460800
 ```
 
-Restart Zigbee2MQTT.
-It might take a couple of tries for Zigbee2MQTT to connect the first time but it will work without issues afterwards.
+Restart `Zigbee2MQTT`.
+It might take a couple of tries for `Zigbee2MQTT` to connect the first time, but it will work without issues afterward.
 
 ## Matter
 
@@ -79,3 +101,12 @@ you also need the [python-matter-server](https://github.com/home-assistant-libs/
 3. change the environment variable `FIRMWARE` to the new Filename (without path)
 4. change the environment variable `AUTOFLASH_FIRMWARE` to `1`
 5. redeploy your container
+
+## Docker Base Images
+
+| arch     | url                                                                       |
+|----------|---------------------------------------------------------------------------|
+| aarch64: | https://hub.docker.com/r/homeassistant/aarch64-addon-silabs-multiprotocol |
+| amd64:   | https://hub.docker.com/r/homeassistant/amd64-addon-silabs-multiprotocol   |
+| armv7:   | https://hub.docker.com/r/homeassistant/arm-addon-silabs-multiprotocol     |
+| i386     | not exists (not supported by HA)                                          |
