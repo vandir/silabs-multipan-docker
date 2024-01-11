@@ -5,6 +5,7 @@ ENV S6_VERBOSITY=3 \
     DEVICE="/dev/ttyUSB0" \
     BAUDRATE="460800" \
     CPCD_TRACE="false" \
+    CPCP_DISABLE_ENCRYPTION="true" \
     FLOW_CONTROL="true" \
     NETWORK_DEVICES=0 \
     OTBR_ENABLE=1 \
