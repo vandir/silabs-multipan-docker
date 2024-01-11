@@ -6,6 +6,9 @@ services:
     restart: unless-stopped
     privileged: true # don't change this !
     network_mode: host # don't change this !
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
     volumes:
       - ~/multipan/:/data
     environment:
