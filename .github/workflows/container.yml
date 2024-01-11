@@ -1,13 +1,17 @@
 name: 'container'
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
-  schedule:
-    - cron: '5 7 * * *'
+  workflow_dispatch:
+    inputs:
+      base_version:
+        description: 'base image version'
+        required: true
+        default: 'latest'
+#  push:
+#    branches:
+#      - main
+#    paths-ignore:
+#      - 'README.md'
 
 jobs:
   release:
@@ -35,7 +39,7 @@ jobs:
         with:
           images: ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_IMAGE }},ghcr.io/${{ github.repository }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ inputs.base_version }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -56,3 +60,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BASE_VERSION: ${{ inputs.base_version }}

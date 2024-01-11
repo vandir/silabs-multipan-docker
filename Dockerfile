@@ -1,4 +1,5 @@
-FROM homeassistant/${TARGETARCH}-addon-silabs-multiprotocol:latest
+ARG BASE_VERSION=latest
+FROM homeassistant/${TARGETARCH}-addon-silabs-multiprotocol:${BASE_VERSION}
 
 ENV S6_VERBOSITY=3 \
     DEVICE="/dev/ttyUSB0" \
