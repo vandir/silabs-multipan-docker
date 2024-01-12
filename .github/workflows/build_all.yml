@@ -19,7 +19,7 @@ jobs:
       - name: count tags
         run: jq -r 'length' <<< '${{ steps.tags.outputs.matrix }}'
 
-  call_build:
+  run_builds:
     runs-on: ubuntu-latest
     needs: provide_versions
     permissions: write-all
@@ -38,5 +38,5 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
-          event-type: container
+          event-type: build_version
           client-payload: '{"base_version": "${{ fromJSON(toJSON(matrix)).name }}"}'

@@ -4,12 +4,11 @@ This container is a **standalone** version of the [Silicon Labs multiprotocol ad
 
 ![](https://img.shields.io/github/license/b2un0/silabs-multipan-docker.svg)
 ![](https://img.shields.io/github/stars/b2un0/silabs-multipan-docker)
+![](https://img.shields.io/docker/v/b2un0/silabs-multipan-docker)
 ![](https://img.shields.io/docker/pulls/b2un0/silabs-multipan-docker.svg)
-![](https://img.shields.io/docker/stars/b2un0/silabs-multipan-docker.svg)
 ![](https://img.shields.io/docker/image-size/b2un0/silabs-multipan-docker.svg)
-![](https://github.com/b2un0/dcled/workflows/container/badge.svg)
 
-# :exclamation: Attention :exclamation:
+# ❗ Attention ❗
 
 I do not provide any support for the software running in this container.
 
@@ -20,7 +19,23 @@ I have only provided a `standalone` version of the Silabs multiprotocol containe
 Based on the work by [@nervousapps](https://github.com/nervousapps/haDOCKERaddons/tree/master/silabs-multiprotocol/dockerCustom)
 and [m33ts4k0z](https://github.com/m33ts4k0z/silabs-multipan-docker)
 
-## :exclamation: requirements :exclamation: read carefully :exclamation:
+## Versions
+
+see [VERSIONS.md](VERSIONS.md)
+
+## Changelog
+
+see [CHANGELOG.md](CHANGELOG.md)
+
+## Docs
+
+see [DOCS.md](DOCS.md)
+
+## Base
+
+see [BASE.md](BASE.md)
+
+## ❗ requirements ❗ read carefully ❗
 
 1. the container must run in `host` network mode
 2. working `IPv6` in your LAN
