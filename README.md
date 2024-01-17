@@ -87,7 +87,7 @@ add a new Device Integration `Open Thread Border Router` and use as Host `http:/
 
 1. Add the Zigbee Home Automation (`ZHA`) integration
 2. Choose `EZSP` as Radio type
-3. As serial path, enter `tcp://host_ip:20108`
+3. As serial path, enter `tcp://host_ip:20108` or `socket://host_ip:20108`
 4. Port speed `460800`
 5. flow control `hardware`
 
