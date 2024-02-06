@@ -119,9 +119,9 @@ you also need the [python-matter-server](https://github.com/home-assistant-libs/
 
 ## Docker Base Images
 
-| arch     | url                                                                       |
-|----------|---------------------------------------------------------------------------|
-| aarch64: | https://hub.docker.com/r/homeassistant/aarch64-addon-silabs-multiprotocol |
-| amd64:   | https://hub.docker.com/r/homeassistant/amd64-addon-silabs-multiprotocol   |
-| armv7:   | https://hub.docker.com/r/homeassistant/arm-addon-silabs-multiprotocol     |
-| i386     | not exists (not supported by HA)                                          |
+| arch    | url                                                                       |
+|---------|---------------------------------------------------------------------------|
+| aarch64 | https://hub.docker.com/r/homeassistant/aarch64-addon-silabs-multiprotocol |
+| amd64   | https://hub.docker.com/r/homeassistant/amd64-addon-silabs-multiprotocol   |
+| armv7   | https://hub.docker.com/r/homeassistant/arm-addon-silabs-multiprotocol     |
+| i386    | not exists (not supported by HA)                                          |
