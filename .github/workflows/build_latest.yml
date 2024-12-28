@@ -25,8 +25,8 @@ jobs:
       - name: self version
         id: self_version
         run: |
-          docker pull b2un0/silabs-multipan-docker:latest
-          echo self_version=$(docker inspect b2un0/silabs-multipan-docker:latest --format '{{ index .Config.Labels "org.opencontainers.image.version"}}') >> $GITHUB_OUTPUT
+          docker pull vandir/silabs-multipan-docker:latest
+          echo self_version=$(docker inspect vandir/silabs-multipan-docker:latest --format '{{ index .Config.Labels "org.opencontainers.image.version"}}') >> $GITHUB_OUTPUT
 
       - name: show self version
         run: |
