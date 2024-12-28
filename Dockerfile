@@ -1,5 +1,5 @@
 ARG BASE_VERSION
-FROM homeassistant/${TARGETARCH}-addon-silabs-multiprotocol:${BASE_VERSION}
+FROM shu2/${TARGETARCH}-addon-silabs-multiprotocol:${BASE_VERSION}
 
 ENV S6_VERBOSITY=3 \
     DEVICE="/dev/ttyUSB0" \
