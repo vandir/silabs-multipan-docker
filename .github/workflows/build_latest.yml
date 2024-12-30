@@ -15,8 +15,8 @@ jobs:
       - name: base version
         id: base_version
         run: |
-          docker pull homeassistant/amd64-addon-silabs-multiprotocol:latest
-          echo base_version=$(docker inspect homeassistant/amd64-addon-silabs-multiprotocol:latest --format '{{ index .Config.Labels "org.opencontainers.image.version"}}') >> $GITHUB_OUTPUT
+          docker pull shu2/amd64-addon-silabs-multiprotocol:latest
+          echo base_version=$(docker inspect shu2/amd64-addon-silabs-multiprotocol:latest --format '{{ index .Config.Labels "org.opencontainers.image.version"}}') >> $GITHUB_OUTPUT
 
       - name: show base version
         run: |
@@ -25,8 +25,8 @@ jobs:
       - name: self version
         id: self_version
         run: |
-          docker pull vandir/silabs-multipan-docker:latest
-          echo self_version=$(docker inspect vandir/silabs-multipan-docker:latest --format '{{ index .Config.Labels "org.opencontainers.image.version"}}') >> $GITHUB_OUTPUT
+          docker pull shu2/silabs-multipan-docker:latest
+          echo self_version=$(docker inspect shu2/silabs-multipan-docker:latest --format '{{ index .Config.Labels "org.opencontainers.image.version"}}') >> $GITHUB_OUTPUT
 
       - name: show self version
         run: |
