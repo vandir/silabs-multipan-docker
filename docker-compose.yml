@@ -19,6 +19,7 @@ services:
       BACKBONE_IF: "eth0" # change this to your network interface
       OTBR_REST_LISTEN_PORT: "8081" # use this within the HomeAssistant integration
       OTBR_WEB_PORT: "8086"
+      OTBR_NAT64: "false"
 
       # ZIGBEED environment variables
       EZSP_LISTEN_PORT: "20108" #

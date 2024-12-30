@@ -14,7 +14,7 @@ declare otbr_log_level
 declare otbr_log_level_int
 declare otbr_rest_listen
 declare otbr_rest_listen_port
-
+declare otbr_nat64
 declare thread_if
 
 thread_if="wpan0"
@@ -84,6 +84,20 @@ else
     ip6tables -P FORWARD ACCEPT
     # HAOS 9.3 and earlier (for 9.4 accept is the default so this won't do anything)
     ip6tables-legacy -P FORWARD ACCEPT
+fi
+
+if  [[ -z "${OTBR_NAT64}" ]]; then
+    export OTBR_NAT64="false"
+fi
+otbr_nat64=$OTBR_NAT64
+if [ "$otbr_nat64" = true ] ; then
+    log 'info' "Setting iptables for NAT64..."
+    iptables -t mangle -A PREROUTING -i ${thread_if} -j MARK --set-mark 0x1001
+    iptables -t nat -A POSTROUTING -m mark --mark 0x1001 -j MASQUERADE
+
+    iptables -t filter -A FORWARD -o ${backbone_if} -j ACCEPT
+
+    iptables -t filter -A FORWARD -i ${backbone_if} -j ACCEPT
 fi
 
 otbr_rest_listen="::"
